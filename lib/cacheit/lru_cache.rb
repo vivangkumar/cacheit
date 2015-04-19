@@ -4,6 +4,7 @@ module Cache
   class LRUCache < BaseCache
     attr_accessor :capacity
     attr_accessor :cache
+    attr_accessor :length
     attr_accessor :lru
 
     def initialize(capacity)
@@ -23,7 +24,7 @@ module Cache
     end
 
     def set(key, value)
-      if @cache.length >= @capacity
+      if @length >= @capacity
         old_key = @lru.min_by{ |_, v| v }.first
         @cache.delete(old_key)
         @lru.delete(old_key)
@@ -32,12 +33,22 @@ module Cache
       @cache[key] = value
       @lru[key] = @usage
       @usage += 1
+      @length += 1
+    end
+
+    def delete(key)
+      if @cache.has_key?(key)
+        @cache.delete(key)
+        @lru.delete(key)
+        @length -= 1
+      end
     end
 
     def reset
       @lru = {}
       @usage = 0
       @cache = {}
+      @length = 0
     end
   end
 end

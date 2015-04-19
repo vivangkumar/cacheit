@@ -47,8 +47,33 @@ describe Cache::LRUCache do
     it 'should reset the cache' do
       cache = Cache::LRUCache.new(5)
       cache.set('test1', 'test1')
-      cache.reset()
+      cache.reset
       expect(cache.cache).to eq({})
+    end
+  end
+
+  describe '#delete' do
+    it 'should delete a key if it is in the cache' do
+      cache = Cache::LRUCache.new(1)
+      cache.set('test', 'test')
+      cache.delete('test')
+      expect(cache.cache).to eq({})
+      expect(cache.lru).to eq({})
+    end
+
+    it 'should decrement the length when a key is deleted' do
+      cache = Cache::LRUCache.new(1)
+      cache.set('blah', 'blah')
+      cache.delete('blah')
+      expect(cache.length).to eq(0)
+    end
+
+    it 'should not delete a key if its not in the cache' do
+      cache = Cache::LRUCache.new(1)
+      cache.set('test', 'test')
+      cache.delete('test2')
+      expect(cache.cache).to eq({'test' => 'test'})
+      expect(cache.lru).to eq({'test' => 0})
     end
   end
 end
