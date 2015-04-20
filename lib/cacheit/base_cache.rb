@@ -3,22 +3,28 @@ module Cache
   attr_accessor :length
   
   class BaseCache
-    def initialize(capacity)
-      @capacity = capacity
+    def initialize(size)
+      @size = size
       @cache = {}
       @length = 0
     end
 
-    def get(key)
+    def [](key)
     end
 
-    def set(key, value)
+    def []=(key, value)
     end
 
     def delete(key)
     end
 
-    def reset()
+    def keys
+    end
+
+    def values
+    end
+
+    def reset
     end
   end
 end

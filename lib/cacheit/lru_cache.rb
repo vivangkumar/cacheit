@@ -2,38 +2,31 @@ require_relative 'base_cache'
 
 module Cache
   class LRUCache < BaseCache
-    attr_accessor :capacity
+    attr_accessor :size
     attr_accessor :cache
     attr_accessor :length
     attr_accessor :lru
 
-    def initialize(capacity)
-      super(capacity)
-      @lru = {}
-      @usage = 0
+    def initialize(size)
+      super(size)
+      @lru = []
     end
 
-    def get(key)
+    def [](key)
       if @cache.has_key?(key)
-        @lru[key] = @usage
-        @usage += 1
+        age_key(key)
         @cache[key]
       else
         nil
       end
     end
 
-    def set(key, value)
-      if @length >= @capacity
-        old_key = @lru.min_by{ |_, v| v }.first
-        @cache.delete(old_key)
-        @lru.delete(old_key)
-      end
-
+    def []=(key, value)
       @cache[key] = value
-      @lru[key] = @usage
-      @usage += 1
+      age_key(key)
       @length += 1
+
+      @cache.delete(@lru.pop) if @lru.size > @size
     end
 
     def delete(key)
@@ -45,10 +38,22 @@ module Cache
     end
 
     def reset
-      @lru = {}
-      @usage = 0
       @cache = {}
       @length = 0
+    end
+
+    def keys
+      @cache.keys
+    end
+
+    def values
+      @cache.values
+    end
+
+    private
+
+    def age_key(key)
+      @lru.unshift(@lru.delete(key) || key)
     end
   end
 end
