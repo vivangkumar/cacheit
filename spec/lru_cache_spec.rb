@@ -76,4 +76,24 @@ describe Cache::LRUCache do
       expect(cache.lru).to eq(['test'])
     end
   end
+
+  describe '#keys' do
+    it 'should return keys of the cache' do
+      cache = Cache::LRUCache.new(3)
+      cache['test'] = 'test'
+      cache['test1'] = 'test1'
+      cache['test2'] = 'test2'
+      expect(cache.keys).to eq(['test', 'test1', 'test2'])
+    end
+  end
+
+  describe '#values' do
+    it 'should return values in the cache' do
+      cache = Cache::LRUCache.new(3)
+      cache['test'] = 'test'
+      cache['test1'] = 'test1'
+      cache['test2'] = 'test2'
+      expect(cache.values).to eq(['test', 'test1', 'test2'])
+    end
+  end
 end
