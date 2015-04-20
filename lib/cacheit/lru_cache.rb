@@ -27,11 +27,14 @@ module Cache
     end
 
     def []=(key, value)
+      if @lru.size >= @size
+        @cache.delete(@lru.pop)
+        @length -= 1
+      end
+      
       @cache[key] = value
       age_key(key)
       @length += 1
-
-      @cache.delete(@lru.pop) if @lru.size > @size
     end
 
     private

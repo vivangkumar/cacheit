@@ -1,38 +1,33 @@
 require 'spec_helper'
-require_relative '../lib/cacheit/lru_cache'
+require_relative '../lib/cacheit/rr_cache'
 require_relative '../lib/cacheit/base_cache'
 
-describe Cache::LRUCache do
+describe Cache::RRCache do
   describe '#initialize' do
     it 'should create a new cache' do
-      cache = Cache::LRUCache.new(10)
+      cache = Cache::RRCache.new(10)
       expect(cache.size).to be(10);
     end
   end
 
   describe '#set' do
-    cache = Cache::LRUCache.new(3)
+    cache = Cache::RRCache.new(3)
     it 'should set a value in the cache' do
       cache['test'] = 'test'
       expect(cache.cache['test']).to eq('test')
     end
 
-    it 'should expire the least used key' do
+    it 'should randomly expire a key' do
       cache['test1'] = 'test1'
       cache['test2'] = 'test2'
       cache['test3'] = 'test3'
-      test1 = cache['test1']
-      cache['test4'] = 'test4'
-      expect(cache.cache.has_key?('test2')).to eq(false)
-    end
-
-    it 'should only contain 3 keys' do
-      expect(cache.cache.length).to eq(3)
+      
+      expect(cache.length).to be(3)
     end
   end
 
   describe '#get' do
-    cache = Cache::LRUCache.new(5)
+    cache = Cache::RRCache.new(5)
     it 'should get a value from the cache' do
       cache['test'] = 'test'
       expect(cache['test']).to eq('test')
