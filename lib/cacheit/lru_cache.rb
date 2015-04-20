@@ -9,7 +9,6 @@ module Cache
   class LRUCache < BaseCache
     attr_accessor :size
     attr_accessor :cache
-    attr_accessor :length
     attr_accessor :lru
 
     def initialize(size)
@@ -29,12 +28,10 @@ module Cache
     def []=(key, value)
       if @lru.size >= @size
         @cache.delete(@lru.pop)
-        @length -= 1
       end
       
       @cache[key] = value
       age_key(key)
-      @length += 1
     end
 
     private

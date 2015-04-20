@@ -6,7 +6,6 @@ module Cache
     def initialize(size)
       @size = size
       @cache = {}
-      @length = 0
     end
 
     def [](key)
@@ -19,7 +18,6 @@ module Cache
       if @cache.has_key?(key)
         @cache.delete(key)
         @lru.delete(key)
-        @length -= 1
       end
     end
 
@@ -31,9 +29,12 @@ module Cache
       @cache.values
     end
 
+    def length
+      @cache.length
+    end
+
     def reset
       @cache = {}
-      @length = 0
     end
   end
 end
