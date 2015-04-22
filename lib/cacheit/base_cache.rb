@@ -15,10 +15,6 @@ module Cache
     end
 
     def delete(key)
-      if @cache.has_key?(key)
-        @cache.delete(key)
-        @lru.delete(key)
-      end
     end
 
     def keys

@@ -2,18 +2,15 @@ require_relative 'base_cache'
 
 module Cache
 
-  # Discards the least recently used items first. 
-  # This algorithm requires keeping track of what was used when, 
-  # which is expensive if one wants to make sure the algorithm 
-  # always discards the least recently used item.
-  class LRUCache < BaseCache
+  # Discards, in contrast to LRU, the most recently used items first.
+  class MRUCache < BaseCache
     attr_accessor :size
     attr_accessor :cache
-    attr_accessor :lru
+    attr_accessor :mru
 
     def initialize(size)
       super(size)
-      @lru = []
+      @mru = []
     end
 
     def [](key)
@@ -26,8 +23,8 @@ module Cache
     end
 
     def []=(key, value)
-      if @lru.size >= @size
-        @cache.delete(@lru.pop)
+      if @mru.size >= @size
+        @cache.delete(@mru.shift)
       end
       
       @cache[key] = value
@@ -37,14 +34,14 @@ module Cache
     def delete(key)
       if @cache.has_key?(key)
         @cache.delete(key)
-        @lru.delete(key)
+        @mru.delete(key)
       end
     end
 
     private
 
     def age_key(key)
-      @lru.unshift(@lru.delete(key) || key)
+      @mru.unshift(@mru.delete(key) || key)
     end
   end
 end

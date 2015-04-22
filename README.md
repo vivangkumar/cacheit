@@ -1,10 +1,11 @@
 # Cacheit
 
-Implementation of some common caching algorithms
+Implementation of some common caching algorithms.
 
 ## Alrogithms
 
 - LRU (Least Recently Used)
+- MRU (Most Recently Used)
 - RR (Random Replacement)
 
 ## Installation
