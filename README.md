@@ -2,7 +2,7 @@
 
 Implementation of some common caching algorithms.
 
-## Alrogithms
+## Algorithms
 
 - LRU (Least Recently Used)
 - MRU (Most Recently Used)
