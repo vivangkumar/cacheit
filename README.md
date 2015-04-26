@@ -8,6 +8,7 @@ Implementation of some common caching algorithms.
 - MRU (Most Recently Used)
 - RR (Random Replacement)
 - LFU (Least Frequently Used)
+- FIFO (First In First Out)
 
 ## Installation
 
