@@ -1,6 +1,9 @@
 require_relative 'base_cache'
 
 module Cache
+
+  # The first inserted key is discarded when
+  # cache size is exceeded
   class FIFOCache < BaseCache
     attr_accessor :size
     attr_accessor :cache
