@@ -45,6 +45,11 @@ module Cache
       end
     end
 
+    def reset
+      super
+      @lfu = {}
+    end
+
     private
 
     def increment_usage(key)

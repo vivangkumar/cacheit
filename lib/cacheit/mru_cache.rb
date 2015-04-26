@@ -38,6 +38,11 @@ module Cache
       end
     end
 
+    def reset
+      super
+      @mru = []
+    end
+
     private
 
     def age_key(key)

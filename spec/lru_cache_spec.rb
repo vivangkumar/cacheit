@@ -24,6 +24,7 @@ describe Cache::LRUCache do
       cache['test']
       cache['test4'] = 'test4'
       expect(cache.cache.has_key?('test2')).to eq(false)
+      expect(cache.lru.include?('test2')).to eq(false)
     end
 
     it 'should only contain 3 keys' do
@@ -49,6 +50,7 @@ describe Cache::LRUCache do
       cache['test1'] = 'test1'
       cache.reset
       expect(cache.cache).to eq({})
+      expect(cache.lru).to eq([])
     end
   end
 

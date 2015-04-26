@@ -31,6 +31,7 @@ module Cache
 
     def reset
       @cache = {}
+      @size = 0
     end
   end
 end
