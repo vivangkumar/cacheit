@@ -26,5 +26,11 @@ module Cache
 
       @cache[key] = value
     end
+
+    def delete(key)
+      if @cache.has_key?(key)
+        @cache.delete(key)
+      end
+    end
   end
 end
