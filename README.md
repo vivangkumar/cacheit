@@ -7,6 +7,7 @@ Implementation of some common caching algorithms.
 - LRU (Least Recently Used)
 - MRU (Most Recently Used)
 - RR (Random Replacement)
+- LFU (Least Frequently Used)
 
 ## Installation
 
