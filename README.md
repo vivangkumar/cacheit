@@ -1,4 +1,5 @@
 # Cacheit
+[![Build Status](https://travis-ci.org/vivangkumar/cacheit.svg)](https://travis-ci.org/vivangkumar/cacheit)
 
 Implementation of some common caching algorithms.
 
