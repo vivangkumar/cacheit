@@ -7,16 +7,7 @@ module Cache
       @size = size
       @cache = {}
     end
-
-    def [](key)
-    end
-
-    def []=(key, value)
-    end
-
-    def delete(key)
-    end
-
+    
     def keys
       @cache.keys
     end
@@ -27,6 +18,17 @@ module Cache
 
     def length
       @cache.length
+    end
+
+    protected
+
+    def [](key)
+    end
+
+    def []=(key, value)
+    end
+
+    def delete(key)
     end
 
     def reset
