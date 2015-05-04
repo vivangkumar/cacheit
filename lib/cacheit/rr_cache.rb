@@ -28,9 +28,7 @@ module Cache
     end
 
     def delete(key)
-      if @cache.has_key?(key)
-        @cache.delete(key)
-      end
+      @cache.delete(key)
     end
   end
 end

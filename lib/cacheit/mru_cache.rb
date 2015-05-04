@@ -31,11 +31,9 @@ module Cache
       age_key(key)
     end
 
-    def delete(key)
-      if @cache.has_key?(key)
-        @cache.delete(key)
-        @mru.delete(key)
-      end
+    def delete(key)  
+      @cache.delete(key)
+      @mru.delete(key)
     end
 
     def reset
