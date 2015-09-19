@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/cacheit/fifo_cache'
-require_relative '../lib/cacheit/base_cache'
 
 describe Cache::FIFOCache do
   describe '#initialize' do

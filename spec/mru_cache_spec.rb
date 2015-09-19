@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/cacheit/mru_cache'
-require_relative '../lib/cacheit/base_cache'
 
 describe Cache::MRUCache do
   describe '#initialize' do

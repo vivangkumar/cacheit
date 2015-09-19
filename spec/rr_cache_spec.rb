@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/cacheit/rr_cache'
-require_relative '../lib/cacheit/base_cache'
 
 describe Cache::RRCache do
   describe '#initialize' do

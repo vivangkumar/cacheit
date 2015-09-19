@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/cacheit/lfu_cache'
-require_relative '../lib/cacheit/base_cache'
 
 describe Cache::LFUCache do
   describe '#initialize' do
