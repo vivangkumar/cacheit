@@ -17,8 +17,7 @@ module Cache
 
     def []=(key, value)
       @cache.shift if @cache.length >= @size
-      @cache[key] = value
+      super
     end
-
   end
 end

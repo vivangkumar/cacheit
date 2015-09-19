@@ -23,7 +23,7 @@ module Cache
 
     def []=(key, value)
       @cache.delete(@lru.pop) if @lru.size >= @size
-      @cache[key] = value
+      super
       age_key(key)
     end
 

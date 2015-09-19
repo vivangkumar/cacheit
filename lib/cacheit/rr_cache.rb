@@ -16,7 +16,7 @@ module Cache
 
     def []=(key, value)
       evict_random if @cache.size >= @size
-      @cache[key] = value
+      super
     end
 
     private

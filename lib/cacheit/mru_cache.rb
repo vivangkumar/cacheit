@@ -20,7 +20,7 @@ module Cache
 
     def []=(key, value)
       @cache.delete(@mru.shift) if @mru.size >= @size
-      @cache[key] = value
+      super
       age_key(key)
     end
 

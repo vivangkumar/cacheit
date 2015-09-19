@@ -28,7 +28,7 @@ module Cache
         @lfu.delete(lfu_key)
       end
 
-      @cache[key] = value
+      super
       @lfu[key] = 0 if !@lfu.has_key?(key)
 
       increment_usage(key)

@@ -19,7 +19,11 @@ module Cache
     end
 
     def []=(key, value)
+      @cache[key] = value unless @cache.has_key?(key)
     end
+
+    alias get []
+    alias set []=
 
     def reset
       @cache = {}
