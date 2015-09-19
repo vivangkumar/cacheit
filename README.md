@@ -30,6 +30,10 @@ Available API methods -
   Get a key from the cache.
 - `[]=(key, value)`
   Set a key with a value in the cache.
+- `get(key)`
+  Alias for `[](key)`
+- `set(key, value)`
+  Alias for `[]=(key, value)`
 - `delete(key)`
   Delete a key from the cache.
 - `reset`
@@ -39,7 +43,7 @@ Available API methods -
 - `values`
   Returns all the values associated with keys, currently in the cache.
 - `length`
-  Returns the current lenght of the cache
+  Returns the current length of the cache
 
 Available Cache implementations -
 All cache's are part of the `Cache` module.
