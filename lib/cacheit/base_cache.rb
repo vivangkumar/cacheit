@@ -1,6 +1,5 @@
 module Cache
-  attr_accessor :cache
-  attr_accessor :length
+  attr_accessor :cache, :length
   
   class BaseCache
     def initialize(size)

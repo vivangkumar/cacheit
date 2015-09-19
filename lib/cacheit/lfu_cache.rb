@@ -7,9 +7,7 @@ module Cache
   # When the cache is full and requires more room the system will purge 
   # the item with the lowest reference frequency.
   class LFUCache < BaseCache
-    attr_accessor :size
-    attr_accessor :cache
-    attr_accessor :lfu
+    attr_accessor :size, :cache, :lfu
 
     def initialize(size)
       super(size)

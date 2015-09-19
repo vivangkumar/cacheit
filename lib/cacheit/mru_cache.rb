@@ -4,9 +4,7 @@ module Cache
 
   # Discards, in contrast to LRU, the most recently used items first.
   class MRUCache < BaseCache
-    attr_accessor :size
-    attr_accessor :cache
-    attr_accessor :mru
+    attr_accessor :size, :cache, :mru
 
     def initialize(size)
       super(size)

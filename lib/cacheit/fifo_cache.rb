@@ -5,13 +5,10 @@ module Cache
   # The first inserted key is discarded when
   # cache size is exceeded
   class FIFOCache < BaseCache
-    attr_accessor :size
-    attr_accessor :cache
-    attr_accessor :queue
+    attr_accessor :size, :cache, :queue
 
     def initialize(size)
       super(size)
-      @queue = []
     end
 
     def [](key)
@@ -25,21 +22,17 @@ module Cache
     def []=(key, value)
       if @cache.length >= @size
         @cache.shift
-        @queue.shift
       end
 
       @cache[key] = value
-      @queue << key
     end
 
     def delete(key)
       @cache.delete(key)
-      @queue.delete(key)
     end
 
     def reset
       super
-      @queue = []
     end
   end
 end

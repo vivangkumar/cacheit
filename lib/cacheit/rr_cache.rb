@@ -4,8 +4,7 @@ module Cache
   # Randomly selects a candidate item and discards it to make space when necessary. 
   # This algorithm does not require keeping any information about the access history.
   class RRCache < BaseCache
-    attr_accessor :size
-    attr_accessor :cache
+    attr_accessor :size, :cache 
 
     def initialize(size)
       super(size)

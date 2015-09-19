@@ -7,9 +7,7 @@ module Cache
   # which is expensive if one wants to make sure the algorithm 
   # always discards the least recently used item.
   class LRUCache < BaseCache
-    attr_accessor :size
-    attr_accessor :cache
-    attr_accessor :lru
+    attr_accessor :size, :cache, :lru
 
     def initialize(size)
       super(size)
