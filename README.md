@@ -72,6 +72,14 @@ Or install it yourself as:
 
 Run tests using `rspec`
 
+## Benchmarks
+
+You can benchmark the cache's by running
+
+```
+ruby bench/bench.rb
+```
+
 ## Contributing
 
 1. Fork it (http://github.com/vivangkumar/cacheit/fork)
@@ -80,6 +88,6 @@ Run tests using `rspec`
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Notes
+## TODO
 
 Most algorithms still need to be optimized to meet time constraints.
