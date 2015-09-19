@@ -4,7 +4,7 @@ module Cache
 
   # Discards, in contrast to LRU, the most recently used items first.
   class MRUCache < BaseCache
-    attr_accessor :size, :cache, :mru
+    attr_reader :size, :cache
 
     def initialize(size)
       super(size)
@@ -15,22 +15,17 @@ module Cache
       if @cache.has_key?(key)
         age_key(key)
         @cache[key]
-      else
-        nil
       end
     end
 
     def []=(key, value)
-      if @mru.size >= @size
-        @cache.delete(@mru.shift)
-      end
-      
+      @cache.delete(@mru.shift) if @mru.size >= @size
       @cache[key] = value
       age_key(key)
     end
 
     def delete(key)  
-      @cache.delete(key)
+      super
       @mru.delete(key)
     end
 

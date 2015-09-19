@@ -21,8 +21,7 @@ describe Cache::FIFOCache do
       cache['test1'] = 'test1'
       cache['test2'] = 'test2'
       cache['test4'] = 'test4'
-      expect(cache.cache.has_key?('test')).to eq(false)
-      expect(cache.queue.include?('test')).to eq(false)
+      expect(cache.cache.has_key?('test')).to eq(false) 
     end
 
     it 'should only contain 3 keys' do
@@ -48,7 +47,6 @@ describe Cache::FIFOCache do
       cache['test1'] = 'test1'
       cache.reset
       expect(cache.cache).to eq({})
-      expect(cache.queue).to eq([])
     end
   end
 
@@ -58,7 +56,6 @@ describe Cache::FIFOCache do
       cache['test'] = 'test'
       cache.delete('test')
       expect(cache.cache).to eq({})
-      expect(cache.queue).to eq([])
     end
 
     it 'should decrement the length when a key is deleted' do
@@ -73,7 +70,6 @@ describe Cache::FIFOCache do
       cache['test'] = 'test'
       cache.delete('test2')
       expect(cache.cache).to eq({'test' => 'test'})
-      expect(cache.queue).to eq(['test'])
     end
   end
 

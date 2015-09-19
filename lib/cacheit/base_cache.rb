@@ -1,33 +1,24 @@
+require 'forwardable'
+
 module Cache
-  attr_accessor :cache, :length
-  
   class BaseCache
+    extend Forwardable
+    attr_accessor :cache
+
     def initialize(size)
       @size = size
       @cache = {}
     end
-    
-    def keys
-      @cache.keys
-    end
 
-    def values
-      @cache.values
-    end
-
-    def length
-      @cache.length
-    end
-
-    protected
+    def_delegator :@cache, :keys, :keys
+    def_delegator :@cache, :values, :values
+    def_delegator :@cache, :length, :length
+    def_delegator :@cache, :delete, :delete
 
     def [](key)
     end
 
     def []=(key, value)
-    end
-
-    def delete(key)
     end
 
     def reset

@@ -4,30 +4,25 @@ module Cache
   # Randomly selects a candidate item and discards it to make space when necessary. 
   # This algorithm does not require keeping any information about the access history.
   class RRCache < BaseCache
-    attr_accessor :size, :cache 
+    attr_reader :size, :cache 
 
     def initialize(size)
       super(size)
     end
 
     def [](key)
-      if @cache.has_key?(key)
-        @cache[key]
-      else
-        nil
-      end
+      @cache[key] if @cache.has_key?(key)
     end
 
     def []=(key, value)
-      if @cache.size >= @size
-        @cache.delete(@cache.values[rand(@cache.length)])
-      end
-
+      evict_random if @cache.size >= @size
       @cache[key] = value
     end
 
-    def delete(key)
-      @cache.delete(key)
+    private
+
+    def evict_random
+      @cache.delete(@cache.values[rand(@cache.length)])
     end
   end
 end

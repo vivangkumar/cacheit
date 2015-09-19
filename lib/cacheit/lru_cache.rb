@@ -7,7 +7,7 @@ module Cache
   # which is expensive if one wants to make sure the algorithm 
   # always discards the least recently used item.
   class LRUCache < BaseCache
-    attr_accessor :size, :cache, :lru
+    attr_reader :size, :cache
 
     def initialize(size)
       super(size)
@@ -18,22 +18,17 @@ module Cache
       if @cache.has_key?(key)
         age_key(key)
         @cache[key]
-      else
-        nil
       end
     end
 
     def []=(key, value)
-      if @lru.size >= @size
-        @cache.delete(@lru.pop)
-      end
-      
+      @cache.delete(@lru.pop) if @lru.size >= @size
       @cache[key] = value
       age_key(key)
     end
 
     def delete(key)
-      @cache.delete(key)
+      super
       @lru.delete(key)
     end
 

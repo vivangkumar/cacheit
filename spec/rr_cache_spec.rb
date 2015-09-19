@@ -40,7 +40,7 @@ describe Cache::RRCache do
 
   describe '#reset' do
     it 'should reset the cache' do
-      cache = Cache::LRUCache.new(5)
+      cache = Cache::RRCache.new(5)
       cache['test1'] = ['test1']
       cache.reset
       expect(cache.cache).to eq({})
@@ -49,32 +49,30 @@ describe Cache::RRCache do
 
   describe '#delete' do
     it 'should delete a key if it is in the cache' do
-      cache = Cache::LRUCache.new(1)
+      cache = Cache::RRCache.new(1)
       cache['test'] = ['test']
       cache.delete('test')
       expect(cache.cache).to eq({})
-      expect(cache.lru).to eq([])
     end
 
     it 'should decrement the length when a key is deleted' do
-      cache = Cache::LRUCache.new(1)
+      cache = Cache::RRCache.new(1)
       cache['blah'] = ['blah']
       cache.delete('blah')
       expect(cache.length).to eq(0)
     end
 
     it 'should not delete a key if its not in the cache' do
-      cache = Cache::LRUCache.new(1)
+      cache = Cache::RRCache.new(1)
       cache['test'] = 'test'
       cache.delete('test2')
       expect(cache.cache).to eq({'test' => 'test'})
-      expect(cache.lru).to eq(['test'])
     end
   end
 
   describe '#keys' do
     it 'should return keys of the cache' do
-      cache = Cache::LRUCache.new(3)
+      cache = Cache::RRCache.new(3)
       cache['test'] = 'test'
       cache['test1'] = 'test1'
       cache['test2'] = 'test2'
@@ -84,7 +82,7 @@ describe Cache::RRCache do
 
   describe '#values' do
     it 'should return values in the cache' do
-      cache = Cache::LRUCache.new(3)
+      cache = Cache::RRCache.new(3)
       cache['test'] = 'test'
       cache['test1'] = 'test1'
       cache['test2'] = 'test2'

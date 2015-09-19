@@ -7,7 +7,7 @@ module Cache
   # When the cache is full and requires more room the system will purge 
   # the item with the lowest reference frequency.
   class LFUCache < BaseCache
-    attr_accessor :size, :cache, :lfu
+    attr_reader :size, :cache
 
     def initialize(size)
       super(size)
@@ -18,8 +18,6 @@ module Cache
       if @cache.has_key?(key)
         increment_usage(key)
         @cache[key]
-      else
-        nil
       end
     end
 
@@ -37,7 +35,7 @@ module Cache
     end
 
     def delete(key)
-      @cache.delete(key)
+      super
       @lfu.delete(key)
     end
 
